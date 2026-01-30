@@ -38,7 +38,7 @@ include $(DEVKITPRO)/libnx/switch_rules
 #   NACP building is skipped as well.
 #---------------------------------------------------------------------------------
 APP_TITLE	:=	sys-notif-LED
-APP_VERSION :=	1.0.0
+APP_VERSION :=	1.0.1
 
 TARGET		:=	sys-notif-LED
 BUILD		:=	build

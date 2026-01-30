@@ -18,7 +18,7 @@ public:
 
     virtual tsl::elm::Element* createUI() override {
         loadMode();
-        auto frame = new tsl::elm::OverlayFrame("sys-notif-LED", "1.0.0");
+        auto frame = new tsl::elm::OverlayFrame("sys-notif-LED", "1.0.1");
         auto list = new tsl::elm::List();
 
         auto solidItem = new tsl::elm::ListItem("Set LED to Solid");
