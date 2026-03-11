@@ -1,6 +1,10 @@
 # lite-led
 
-`lite-led` is a Nintendo Switch sysmodule and Tesla overlay for controlling the notification LED.
+<p align="center">
+  <img src="led.jpeg" alt="lite-led" width="480">
+</p>
+
+`lite-led` is a Nintendo Switch LITE sysmodule and Tesla overlay for controlling the notification LED.
 
 It packages as:
 
