@@ -9,7 +9,7 @@ public:
     GuiTest() { }
     void loadMode() {
         fsdevMountSdmc();
-        std::ifstream tf("sdmc:/config/sys-notif-LED/type");
+        std::ifstream tf("sdmc:/config/lite-led/type");
         if (tf.good())
             std::getline(tf, modeString);
         else
@@ -18,15 +18,15 @@ public:
 
     virtual tsl::elm::Element* createUI() override {
         loadMode();
-        auto frame = new tsl::elm::OverlayFrame("sys-notif-LED", "1.0.1");
+        auto frame = new tsl::elm::OverlayFrame("lite-led", "1.0.0");
         auto list = new tsl::elm::List();
 
         auto solidItem = new tsl::elm::ListItem("Set LED to Solid");
         solidItem->setClickListener([this](u64 keys) {
             if (keys & HidNpadButton_A) {
                 fsdevMountSdmc();
-                std::ofstream("sdmc:/config/sys-notif-LED/reset");
-                std::ofstream("sdmc:/config/sys-notif-LED/type") << "solid";
+                std::ofstream("sdmc:/config/lite-led/reset");
+                std::ofstream("sdmc:/config/lite-led/type") << "solid";
                 loadMode();
                 return true;
             }
@@ -40,8 +40,8 @@ public:
         dimItem->setClickListener([this](u64 keys) {
             if (keys & HidNpadButton_A) {
                 fsdevMountSdmc();
-                std::ofstream("sdmc:/config/sys-notif-LED/reset");
-                std::ofstream("sdmc:/config/sys-notif-LED/type") << "dim";
+                std::ofstream("sdmc:/config/lite-led/reset");
+                std::ofstream("sdmc:/config/lite-led/type") << "dim";
                 loadMode();
                 return true;
             }
@@ -53,8 +53,8 @@ public:
         fadeItem->setClickListener([this](u64 keys) {
             if (keys & HidNpadButton_A) {
                 fsdevMountSdmc();
-                std::ofstream("sdmc:/config/sys-notif-LED/reset");
-                std::ofstream("sdmc:/config/sys-notif-LED/type") << "fade";
+                std::ofstream("sdmc:/config/lite-led/reset");
+                std::ofstream("sdmc:/config/lite-led/type") << "fade";
                 loadMode();
                 return true;
             }
@@ -66,8 +66,8 @@ public:
         offItem->setClickListener([this](u64 keys) {
             if (keys & HidNpadButton_A) {
                 fsdevMountSdmc();
-                std::ofstream("sdmc:/config/sys-notif-LED/reset");
-                std::ofstream("sdmc:/config/sys-notif-LED/type") << "off";
+                std::ofstream("sdmc:/config/lite-led/reset");
+                std::ofstream("sdmc:/config/lite-led/type") << "off";
                 loadMode();
                 return true;
             }
@@ -79,8 +79,8 @@ public:
         chargeItem->setClickListener([this](u64 keys) {
             if (keys & HidNpadButton_A) {
                 fsdevMountSdmc();
-                std::ofstream("sdmc:/config/sys-notif-LED/reset");
-                std::ofstream("sdmc:/config/sys-notif-LED/type") << "charge";
+                std::ofstream("sdmc:/config/lite-led/reset");
+                std::ofstream("sdmc:/config/lite-led/type") << "charge";
                 loadMode();
                 return true;
             }
@@ -88,12 +88,12 @@ public:
         });
         list->addItem(chargeItem);
 
-        auto batteryItem = new tsl::elm::ListItem("Dim <=15%, blink <=5% battery");
+        auto batteryItem = new tsl::elm::ListItem("Battery warning");
         batteryItem->setClickListener([this](u64 keys) {
             if (keys & HidNpadButton_A) {
                 fsdevMountSdmc();
-                std::ofstream("sdmc:/config/sys-notif-LED/reset");
-                std::ofstream("sdmc:/config/sys-notif-LED/type") << "battery";
+                std::ofstream("sdmc:/config/lite-led/reset");
+                std::ofstream("sdmc:/config/lite-led/type") << "battery";
                 loadMode();
                 return true;
             }

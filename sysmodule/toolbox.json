@@ -1,6 +1,6 @@
 {
-    "name": "sys-notif-LED",
+    "name": "lite-led",
     "tid": "0100000000000895",
     "requires_reboot": true,
-    "version" : "1.0.1"
+    "version" : "1.0.0"
 }

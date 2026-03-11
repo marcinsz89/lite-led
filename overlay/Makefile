@@ -37,11 +37,12 @@ include $(DEVKITPRO)/libnx/switch_rules
 #   of a homebrew executable (.nro). This is intended to be used for sysmodules.
 #   NACP building is skipped as well.
 #---------------------------------------------------------------------------------
-APP_TITLE	:=	sys-notif-LED
-APP_VERSION :=	1.0.1
+APP_TITLE	:=	lite-led
+APP_VERSION :=	1.0.0
 
-TARGET		:=	sys-notif-LED
+TARGET		:=	lite-led
 BUILD		:=	build
+PRODUCTS	:=	../products/overlay
 SOURCES		:=	source
 DATA		:=	data
 INCLUDES	:=	include libs/libtesla/include
@@ -79,7 +80,7 @@ LIBDIRS	:= $(PORTLIBS) $(LIBNX)
 ifneq ($(BUILD),$(notdir $(CURDIR)))
 #---------------------------------------------------------------------------------
 
-export OUTPUT	:=	$(CURDIR)/$(TARGET)
+export OUTPUT	:=	$(CURDIR)/$(PRODUCTS)/$(TARGET)
 export TOPDIR	:=	$(CURDIR)
 
 export VPATH	:=	$(foreach dir,$(SOURCES),$(CURDIR)/$(dir)) \
@@ -148,7 +149,7 @@ ifeq ($(strip $(NO_ICON)),)
 endif
 
 ifeq ($(strip $(NO_NACP)),)
-	export NROFLAGS += --nacp=$(CURDIR)/$(TARGET).nacp
+	export NROFLAGS += --nacp=$(OUTPUT).nacp
 endif
 
 ifneq ($(APP_TITLEID),)
@@ -167,11 +168,12 @@ all: $(BUILD)
 
 $(BUILD):
 	@[ -d $@ ] || mkdir -p $@
+	@[ -d $(PRODUCTS) ] || mkdir -p $(PRODUCTS)
 	@$(MAKE) --no-print-directory -C $(BUILD) -f $(CURDIR)/Makefile
 
 #---------------------------------------------------------------------------------
 clean:
-	@rm -fr $(BUILD) $(TARGET).ovl $(TARGET).nro $(TARGET).nacp $(TARGET).elf
+	@rm -fr $(BUILD) $(PRODUCTS)/$(TARGET).ovl $(PRODUCTS)/$(TARGET).nro $(PRODUCTS)/$(TARGET).nacp $(PRODUCTS)/$(TARGET).elf
 
 
 #---------------------------------------------------------------------------------
