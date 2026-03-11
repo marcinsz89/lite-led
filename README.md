@@ -127,3 +127,8 @@ Reboot the console after installing the sysmodule.
 | `sysmodule/` | Atmosphere sysmodule source and config |
 | `overlay/` | Tesla overlay source |
 | `build-and-package.sh` | Builds both targets and assembles the release folder |
+
+souldbminerr
+## Credits
+
+- [@souldbminerr](https://github.com/souldbminerr) — helped to figure out the correct approach for Lite
