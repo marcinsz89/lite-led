@@ -1,0 +1,15 @@
+name: Build
+on: [workflow_dispatch]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container: devkitpro/devkita64:latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: make -C sysmodule && make -C overlay
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lite-led-files
+          path: |
+            sysmodule/lite-led.nsp
+            overlay/lite-led.ovl
